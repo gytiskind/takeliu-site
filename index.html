@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Takeliu: lietuviška mokymosi programėlė vaikams</title>
+<meta name="description" content="Takeliu: žaidimų programėlė 2-6 metų vaikams: raidės, skaičiai, spalvos ir formos lietuviškai. Be reklamų, veikia be interneto.">
+<meta property="og:title" content="Takeliu: lietuviška mokymosi programėlė vaikams">
+<meta property="og:description" content="Raidės, skaičiai, spalvos ir formos lietuviškai, žaidžiant. Vaikams nuo 2 iki 6 metų.">
+<meta property="og:image" content="img/menu.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐣</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap&subset=latin-ext" rel="stylesheet">
+<style>
+  :root {
+    --cream:#FFF9EF; --sand:#FFEFD6; --text:#5D4037; --muted:#8A7166;
+    --coral:#F0784E; --coral-deep:#DD5F35; --seafoam:#A8CDB7;
+    --butter:#F3C96B; --lavender:#CBBFE9; --card:#FFFFFF;
+  }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:'Nunito',system-ui,sans-serif; color:var(--text);
+    background:var(--cream); line-height:1.55; font-size:17px;
+  }
+  h1,h2,h3 { font-family:'Baloo 2',system-ui,sans-serif; line-height:1.15; }
+  img { max-width:100%; display:block; }
+  a { color:var(--coral-deep); }
+  .wrap { max-width:1060px; margin:0 auto; padding:0 22px; }
+
+  /* Header */
+  header { padding:18px 0; }
+  header .wrap { display:flex; align-items:center; justify-content:space-between; }
+  .logo { font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.5rem; color:var(--text); text-decoration:none; }
+  .logo span { color:var(--coral); }
+  nav a { text-decoration:none; font-weight:700; font-size:.95rem; margin-left:20px; color:var(--muted); }
+  nav a:hover { color:var(--coral-deep); }
+
+  /* Hero */
+  .hero { position:relative; overflow:hidden; padding:34px 0 70px; }
+  .blob { position:absolute; filter:blur(2px); opacity:.5; z-index:0; }
+  .blob.b1 { width:340px; height:300px; background:var(--butter); border-radius:58% 42% 55% 45%/50% 60% 40% 50%; top:-90px; right:-70px; }
+  .blob.b2 { width:260px; height:240px; background:var(--seafoam); border-radius:45% 55% 48% 52%/60% 42% 58% 40%; bottom:-60px; left:-80px; }
+  .blob.b3 { width:150px; height:140px; background:var(--lavender); border-radius:52% 48% 60% 40%/45% 58% 42% 55%; top:40%; left:44%; opacity:.35; }
+  .hero .wrap { position:relative; z-index:1; display:grid; grid-template-columns:1.15fr .85fr; gap:36px; align-items:center; }
+  .eyebrow { display:inline-block; background:var(--sand); border-radius:999px; padding:.35rem 1rem; font-weight:700; font-size:.85rem; letter-spacing:.03em; margin-bottom:1rem; }
+  .hero h1 { font-size:clamp(2rem,5vw,3.1rem); font-weight:800; margin-bottom:.8rem; }
+  .hero h1 em { font-style:normal; color:var(--coral-deep); }
+  .hero p.lead { font-size:1.12rem; color:var(--muted); max-width:34rem; margin-bottom:1.6rem; }
+  .cta-row { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  .btn { display:inline-block; border-radius:999px; padding:.8rem 1.7rem; font-weight:800; font-family:'Baloo 2',sans-serif; font-size:1.05rem; text-decoration:none; }
+  .btn.primary { background:var(--coral); color:#fff; box-shadow:0 6px 18px rgba(240,120,78,.35); }
+  .btn.primary:hover { background:var(--coral-deep); }
+  .soon { font-size:.85rem; color:var(--muted); font-weight:700; }
+  .hero-art { position:relative; display:flex; justify-content:center; }
+  .hero-art .phone { width:min(250px,58vw); }
+  .hero-art .phone img { aspect-ratio:740/1100; object-fit:cover; object-position:top; height:auto; }
+  .hero-art .petpal {
+    position:absolute; width:44%; bottom:-12px; left:-8%;
+    animation:bob 4.2s ease-in-out infinite alternate;
+    filter:drop-shadow(0 14px 12px rgba(93,64,55,.18));
+  }
+  @keyframes bob { from { transform:translateY(0) } to { transform:translateY(-14px) } }
+  @media (prefers-reduced-motion: reduce) { .hero-art .petpal { animation:none; } }
+
+  /* Phone frame */
+  .phone { background:#3c3733; border-radius:34px; padding:9px; box-shadow:0 18px 40px rgba(93,64,55,.22); }
+  .phone img { border-radius:26px; }
+
+  /* Sections */
+  section { padding:64px 0; }
+  section.alt { background:var(--sand); }
+  .sec-head { text-align:center; max-width:38rem; margin:0 auto 42px; }
+  .sec-head h2 { font-size:clamp(1.6rem,3.6vw,2.2rem); margin-bottom:.5rem; }
+  .sec-head p { color:var(--muted); }
+
+  /* Kaip veikia */
+  .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:26px; }
+  .step { text-align:center; }
+  .step .phone { margin:0 auto 16px; max-width:220px; }
+  .step h3 { font-size:1.15rem; margin-bottom:.25rem; }
+  .step p { font-size:.95rem; color:var(--muted); }
+
+  /* Features */
+  .feats { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .feat { background:var(--card); border-radius:22px; padding:26px 22px; text-align:center; box-shadow:0 2px 14px rgba(93,64,55,.07); }
+  .feat img { width:74px; height:74px; object-fit:contain; margin:0 auto 12px; }
+  .feat h3 { font-size:1.1rem; margin-bottom:.2rem; }
+  .feat p { font-size:.92rem; color:var(--muted); }
+
+  /* Tėvams */
+  .promises { display:grid; grid-template-columns:repeat(2,1fr); gap:16px 28px; max-width:46rem; margin:0 auto; }
+  .promise { display:flex; gap:14px; align-items:flex-start; }
+  .promise .dot { flex:0 0 auto; width:14px; height:14px; margin-top:7px; border-radius:60% 40% 55% 45%/50% 60% 40% 50%; }
+  .promise:nth-child(1) .dot { background:var(--coral); }
+  .promise:nth-child(2) .dot { background:var(--seafoam); }
+  .promise:nth-child(3) .dot { background:var(--butter); }
+  .promise:nth-child(4) .dot { background:var(--lavender); }
+  .promise b { display:block; font-family:'Baloo 2',sans-serif; font-size:1.05rem; }
+  .promise span { color:var(--muted); font-size:.95rem; }
+
+  /* CTA band */
+  .band { text-align:center; }
+  .band h2 { font-size:clamp(1.5rem,3.4vw,2rem); margin-bottom:.6rem; }
+  .band p { color:var(--muted); margin-bottom:1.4rem; }
+
+  footer { padding:34px 0 50px; }
+  footer .wrap { display:flex; flex-wrap:wrap; gap:14px 26px; justify-content:center; color:var(--muted); font-size:.92rem; }
+  footer a { color:var(--muted); font-weight:700; text-decoration:none; }
+  footer a:hover { color:var(--coral-deep); }
+
+  a:focus-visible, .btn:focus-visible { outline:3px solid var(--coral-deep); outline-offset:3px; }
+
+  @media (max-width:860px) {
+    .hero .wrap { grid-template-columns:1fr; text-align:center; }
+    .hero p.lead { margin-left:auto; margin-right:auto; }
+    .cta-row { justify-content:center; }
+    .hero-art { margin-top:14px; }
+    .steps { grid-template-columns:repeat(2,1fr); }
+    .feats { grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:520px) {
+    .steps { grid-template-columns:1fr; }
+    .feats { grid-template-columns:1fr; }
+    .promises { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#">Take<span>liu</span></a>
+    <nav>
+      <a href="#kaip">Kaip veikia</a>
+      <a href="support.html">Pagalba</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Vaikams nuo 2 iki 6 metų 🇱🇹</span>
+        <h1>Mažas takelis į <em>raides, skaičius ir spalvas</em> lietuviškai</h1>
+        <p class="lead">Takeliu su vaiku kalba lietuviškai.
+        Trumpos pamokėlės, švelnus molinukų pasaulis, jokių reklamų ir jokio
+        teksto, kurio mažylis dar negali perskaityti.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:gytis@takeliu.app?subject=Noriu%20išbandyti%20Takeliu">Noriu išbandyti</a>
+          <span class="soon">Netrukus App Store&nbsp;📱</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="phone"><img src="img/menu.jpg" alt="Takeliu pagrindinis ekranas: kelionė Raidžių miškas ir žaidimai" width="740" height="1608"></div>
+        <img class="petpal" src="img/pet.png" alt="Takeliu augintinis, koralinės spalvos molinukas">
+      </div>
+    </div>
+  </div>
+
+  <section id="kaip" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Kaip veikia</h2>
+        <p>Vaikas keliauja savo takeliu: mokosi žaisdamas, o programėlė
+        prisitaiko prie jo tempo.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="phone"><img src="img/menu.jpg" alt="Pagrindinis meniu su kelione ir žaidimais" loading="lazy"></div>
+          <h3>1. Pasirenka kelionę</h3>
+          <p>Raidžių miškas, skaičiai, spalvos ir formos: vienas takelis, daug stotelių.</p>
+        </div>
+        <div class="step">
+          <div class="phone"><img src="img/level.jpg" alt="Pamokėlė: raidė A ir žodis Arbūzas" loading="lazy"></div>
+          <h3>2. Mokosi žaisdamas</h3>
+          <p>Trumpi pratimai su balsu lietuviškai. Klaidos nebaudžiamos, tik švelniai pataisomos.</p>
+        </div>
+        <div class="step">
+          <div class="phone"><img src="img/pet.jpg" alt="Molinukas augintinis, kurį vaikas prižiūri" loading="lazy"></div>
+          <h3>3. Augina draugą</h3>
+          <p>Už mokymąsi vaikas rūpinasi savo molinuku: maitina, prausia, žaidžia ir jį moko.</p>
+        </div>
+        <div class="step">
+          <div class="phone"><img src="img/kartu.jpg" alt="Žaidimas dviese: gaudyk vaisius" loading="lazy"></div>
+          <h3>4. Žaidžia dviese</h3>
+          <p>Aštuoni žaidimai prie vieno ekrano: su broliu, sese ar tėčiu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Kas viduje</h2>
+        <p>Viskas įgarsinta lietuviškai, sukurta pagal ikimokyklinukų amžių.</p>
+      </div>
+      <div class="feats">
+        <div class="feat"><img src="img/menu-abc.png" alt="" loading="lazy"><h3>Abėcėlė ir žodžiai</h3><p>Raidės su vaikui pažįstamais žodžiais ir garsais.</p></div>
+        <div class="feat"><img src="img/menu-numbers.png" alt="" loading="lazy"><h3>Skaičiai</h3><p>Skaičiavimas nuo 1 iki 10: pirštais, taškais ir žaidimais.</p></div>
+        <div class="feat"><img src="img/menu-pencil.png" alt="" loading="lazy"><h3>Rašyk!</h3><p>Pirmi raidžių brūkšniai: spalvinimas pirštu.</p></div>
+        <div class="feat"><img src="img/menu-clock.png" alt="" loading="lazy"><h3>Laikas</h3><p>Valandos ir dienos ritmas su laikroduku.</p></div>
+        <div class="feat"><img src="img/menu-tictactoe.png" alt="" loading="lazy"><h3>Žaidimai dviese</h3><p>Kryžiukai-nuliukai, lenktynės, oro ritulys ir kiti.</p></div>
+        <div class="feat"><img src="img/icon-play.png" alt="" loading="lazy"><h3>Augintinis</h3><p>Molinukas draugas, kurį vaikas pats augina ir moko.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Tėvams</h2>
+        <p>Sukurta tėvų: taip, kaip norėtume, kad atrodytų mūsų vaikų ekrano laikas.</p>
+      </div>
+      <div class="promises">
+        <div class="promise"><span class="dot"></span><div><b>Be reklamų</b><span>Jokių reklamų, jokių netikėtų pirkimų vaiko rankose.</span></div></div>
+        <div class="promise"><span class="dot"></span><div><b>Ekrano laiko riba</b><span>Tėvai nustato dienos limitą, o programėlė pati švelniai užbaigia.</span></div></div>
+        <div class="promise"><span class="dot"></span><div><b>Veikia be interneto</b><span>Viskas telefone: kelionėje, kaime ar lėktuve.</span></div></div>
+        <div class="promise"><span class="dot"></span><div><b>Įgarsinta lietuviškai</b><span>Vaikui nereikia mokėti skaityti: programėlė kalba.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <h2>Norite išbandyti pirmieji?</h2>
+      <p>Programėlė ruošiama App Store. Parašykite, pakviesime į bandytojų būrį.</p>
+      <a class="btn primary" href="mailto:gytis@takeliu.app?subject=Noriu%20išbandyti%20Takeliu">Parašyti laišką</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Takeliu</span>
+    <a href="support.html">Pagalba</a>
+    <a href="privacy.html">Privatumas</a>
+  </div>
+</footer>
+
+</body>
+</html>
