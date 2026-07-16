@@ -58,6 +58,14 @@
   .hero-art .phone { width:min(250px,58vw); }
   .hero-art .phone img { aspect-ratio:740/1100; object-fit:cover; object-position:top; height:auto; }
 
+  .hero-art .petpal {
+    position:absolute; width:46%; bottom:-14px; left:-9%;
+    animation:bob 4.2s ease-in-out infinite alternate;
+    filter:drop-shadow(0 14px 12px rgba(93,64,55,.20));
+  }
+  @keyframes bob { from { transform:translateY(0) } to { transform:translateY(-12px) } }
+  @media (prefers-reduced-motion: reduce) { .hero-art .petpal { animation:none; } }
+
   /* Phone frame */
   .phone { background:#3c3733; border-radius:34px; padding:9px; box-shadow:0 18px 40px rgba(93,64,55,.22); }
   .phone img { border-radius:26px; }
@@ -153,6 +161,7 @@
       </div>
       <div class="hero-art">
         <div class="phone"><img src="img/menu.jpg" alt="Takeliu pagrindinis ekranas: kelionė Raidžių miškas ir žaidimai" width="740" height="1608"></div>
+        <img class="petpal" src="img/pet-hero.png" alt="Takeliu augintinis tyrinėtojo kostiumu">
       </div>
     </div>
   </div>
